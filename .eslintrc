@@ -1,0 +1,42 @@
+{
+  "root": true,
+  "ignorePatterns": ["node_modules/", "dist/", ".histoire/", ".reports/"],
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/vue3-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:prettier-vue/recommended"
+  ],
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "parser": "@typescript-eslint/parser",
+    "project": ["tsconfig.json", "tsconfig.node.json", "tsconfig.app.json"],
+    "extraFileExtensions": [".vue"]
+  },
+  "rules": {
+    "prettier-vue/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "semi": false,
+        "singleQuote": true,
+        "printWidth": 120,
+        "useTabs": false,
+        "tabWidth": 2
+      }
+    ],
+
+    "vue/multi-word-component-names": "off",
+    "vue/component-name-in-template-casing": "warn",
+    "vue/no-duplicate-attr-inheritance": "warn",
+    "vue/block-order": [
+      "warn",
+      {
+        "order": [["script", "template"], "style", "docs"]
+      }
+    ]
+  }
+}

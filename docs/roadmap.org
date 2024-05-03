@@ -1,0 +1,85 @@
+#+TITLE: VueJS : TP guidé (2)
+#+DATE: <2024-04-30 lun.>
+#+OPTIONS: author:nil ^:nil toc:nil
+#+LANGUAGE: fr
+#+LATEX_HEADER: \usepackage[francais]{babel}
+#+TAGS: solution
+# +EXCLUDE_TAGS: solution
+#+LATEX_HEADER: \usepackage{svg}
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+
+#+STARTUP: inlineimages
+
+
+L'idée est de représenter les emplois du temps sans librairie spécialisée. Comme
+pour le reste de la partie /front-end/ de ce module, on utilise le framework
+VueJS, version 3, en préférant l'API Composition.
+
+
+#+NAME: gitdiff
+#+BEGIN_SRC bash :var com="dontrun" :results verbatim :exports results :wrap src diff
+git --git-dir /home/poulpos/flop/cours/vue-1-tp-non-guide/.git diff ${com}^..${com} -- . ':(exclude)yarn.lock'
+#+END_SRC
+
+
+* Initialisation du projet
+
+|---------------------------------------------------------|
+| But : créer et configurer un projet =vite= et s'assurer |
+| de son bon fonctionnement.                              |
+|---------------------------------------------------------|
+
+** Création
+
+#+begin_src shell
+  yarn create vue
+#+end_src
+en ajoutant ces paramètres :
+| Question     | Réponse |
+|--------------+---------|
+| TypeScript   | Oui     |
+| JSX          | Non     |
+| Vue Router   | Oui     |
+| Pinia        | Oui     |
+| Vitest       | Non     |
+| e2e          | Non     |
+| ESLint       | Oui     |
+| Prettier     | Non     |
+| Vue DevTools | Oui     |
+
+
+** Configuration de l'IDE et du linter/formatter
+
+Pour utiliser prettier comme une règle d'eslint :
+#+begin_src shell
+  yarn add -D eslint-config-prettier eslint-plugin-prettier-vue
+#+end_src
+
+Récupérer le =.eslintrc=, le mettre dans le projet, et supprimer le
+=.eslintrc.cjs=.
+
+Sous vscode, dans le répertoire =.vscode=, mettre un fichier =settings.json= contenant :
+#+begin_src json
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "[typescript]": {
+    "editor.formatOnSave": false
+  },
+  "[vue]": {
+    "editor.formatOnSave": false
+  },
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "editor.formatOnSave": true
+}
+#+end_src
+
+Tester :
+- ajouter des espaces dans le fichier =src/components/HelloWorld.vue=
+- sauvegarder
+Le fichier doit être reformaté automatiquement et il ne doit plus y avoir
+d'erreur d'ESLint.
+
