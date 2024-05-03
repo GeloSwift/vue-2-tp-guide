@@ -7,7 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import _ from 'lodash'
 import type { Cell } from '@/ts/types'
 import { ref } from 'vue'
 import { useGameStore } from '@/stores/game'
